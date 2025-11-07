@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moedas</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        footer {
+            color: #a6a6a6;
+            margin-top: 20px;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            background-color: #000000;
+        }
+
+        input,
+        select,
+        button {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        button {
+            width: 400px;
+            color: #a6a6a6;
+            cursor: pointer;
+            background-color: #7d0f7c;
+            padding: 8px;
+            margin-top: 6px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #3a0839;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #9c1e9a;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        input {
+            padding: 8px;
+            width: 400px;
+            outline: none;
+            text-align: center;
+            border: 1px solid #7d0f7c;
+            border-radius: 10px;
+            color: #000000;
+        }
+
+        select {
+            text-align: center;
+            border-radius: 10px;
+            outline: none;
+            padding: 8px;
+            width: 400px;
+            margin-top: 6px;
+            color: #000000;
+            border: 1px solid #7d0f7c;
+            ;
+        }
+
+        .conteiner {
+            background-color: #a6a6a6;
+            padding: 9px;
+            width: 490px;
+            border-radius: 10px;
+            height: 220px;
+            text-align: center;
+            box-shadow: 0px 3px 63px 26px #7d0f7c;
+        }
+
+        .infor {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="conteiner">
+        <h1>Conversor de Moedas do Natan</h1>
+        <p>Escolha sua Moeda e Converta🤑</p>
+        <div class="infor">
+            <label for="inputValor">Valor em Real:💰</label>
+            <input type="number" id="inputValor" placeholder="Coloque um Valor..." step="1">
+            <select name="Moedas" id="inputMoedas">
+                <option value="USD">Dólar Americano (USD)</option>
+                <option value="EUR">Euro (EUR)</option>
+                <option value="GBP">Libra Esterlina (GBP)</option>
+                <option value="BRL" selected>Real Brasileiro (BRL)</option>
+                <option value="JPY">Iene Japonês (JPY)</option>
+                <option value="CAD">Dólar Canadense (CAD)</option>
+                <option value="AUD">Dólar Australiano (AUD)</option>
+                <option value="CHF">Franco Suíço (CHF)</option>
+                <option value="CNY">Yuan Chinês (CNY)</option>
+                <option value="ARS">Peso Argentino (ARS)</option>
+                <option value="MXN">Peso Mexicano (MXN)</option>
+                <option value="CLP">Peso Chileno (CLP)</option>
+                <option value="NZD">Dólar Neozelandês (NZD)</option>
+                <option value="ZAR">Rand Sul-Africano (ZAR)</option>
+                <option value="SEK">Coroa Sueca (SEK)</option>
+                <option value="NOK">Coroa Norueguesa (NOK)</option>
+                <option value="DKK">Coroa Dinamarquesa (DKK)</option>
+                <option value="RUB">Rublo Russo (RUB)</option>
+                <option value="INR">Rúpia Indiana (INR)</option>
+                <option value="KRW">Won Sul-coreano (KRW)</option>
+                <option value="TRY">Lira Turca (TRY)</option>
+                <option value="PLN">Zloty Polonês (PLN)</option>
+                <option value="SAR">Riyal Saudita (SAR)</option>
+                <option value="AED">Dirham dos EAU (AED)</option>
+                <option value="HKD">Dólar de Hong Kong (HKD)</option>
+                <option value="SGD">Dólar de Singapura (SGD)</option>
+            </select>
+            <button id="Buttons">Convert</button>
+            <p id="Result"></p>
+        </div>
+    </div>
+    <footer>
+        &copy; Feito Por Natan Rcs...
+    </footer>
+    <script>
+        const button = document.getElementById("Buttons");
+        const inputValor = document.getElementById("inputValor");
+        const inputMoedas = document.getElementById("inputMoedas");
+        const result = document.getElementById("Result");
+        const url = "https://api.exchangerate-api.com/v4/latest/BRL";
+
+        async function convertMoney() {
+            button.addEventListener("click", async () => {
+                if (inputValor.value === "") {
+                    alert("Insira um Valor Válido");
+                    return;
+                }
+
+                try {
+                    const resposta = await fetch(url);
+                    if (!resposta.ok) throw new Error("Erro ao buscar dados da API, tente novamente");
+
+                    const data = await resposta.json();
+
+                    const valorDigitado = parseFloat(inputValor.value);
+                    const moedaSelecionada = inputMoedas.value;
+
+                    const taxa = data.rates[moedaSelecionada];
+                    const soma = (valorDigitado * taxa).toFixed(2);
+
+                    result.textContent = `${valorDigitado} BRL = ${soma} ${moedaSelecionada}`;
+                } catch (error) {
+                    alert("Ops!! Verifique sua conexão e tente novamente");
+                    console.error(error);
+                }
+            });
+        }
+        convertMoney();
+
+    </script>
+</body>
+
+</html>
