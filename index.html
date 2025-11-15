@@ -6,123 +6,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversor de Moedas</title>
     <style>
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-
-        footer {
-            color: #a6a6a6;
-            margin-top: 20px;
-        }
-
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            background-color: #000000;
-        }
-
-        input,
-        select,
-        button {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        button {
-            width: 400px;
-            color: #a6a6a6;
-            cursor: pointer;
-            background-color: #7d0f7c;
-            padding: 8px;
-            margin-top: 6px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            border: none;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background-color: #3a0839;
-            transform: scale(1.05);
-            box-shadow: 0 0 10px #9c1e9a;
-        }
-
-        button:active {
-            transform: scale(0.98);
-        }
-
-        input {
-            padding: 8px;
-            width: 400px;
-            outline: none;
-            text-align: center;
-            border: 1px solid #7d0f7c;
-            border-radius: 10px;
-            color: #000000;
-        }
-
-        select {
-            text-align: center;
-            border-radius: 10px;
-            outline: none;
-            padding: 8px;
-            width: 400px;
-            margin-top: 6px;
-            color: #000000;
-            border: 1px solid #7d0f7c;
-            ;
-        }
-
-        .conteiner {
-            background-color: #a6a6a6;
-            padding: 9px;
-            width: 490px;
-            border-radius: 10px;
-            height: 220px;
-            text-align: center;
-            box-shadow: 0px 3px 63px 26px #7d0f7c;
-        }
-
-        .infor {
-            display: flex;
-            flex-direction: column;
-        }
-@media (max-width: 480px) {
-    .conteiner {
-        width: 90%;
-        height: auto;
-        padding: 15px;
-    }
-
-    input,
-    select,
-    button {
-        width: 100%;
-    }
-
-    h1 {
-        font-size: 1.3rem;
-    }
-
-    p {
-        font-size: 0.9rem;
-    }
-
-    footer {
-        font-size: 0.8rem;
-        text-align: center;
-        margin-top: 10px;
-    }
+               * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
-</style>
+
+body {
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+footer{
+    margin-top: 50px;
+}
+
+.container {
+    background: white;
+    padding: 25px;
+    width: 320px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus, select:focus {
+    border-color: #4a90e2;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #3a79c4;
+}
+
+.resultado {
+    color: purple;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 900;
+}
+    </style>
 </head>
 
 <body>
@@ -207,4 +166,5 @@
 
 
 </html>
+
 
